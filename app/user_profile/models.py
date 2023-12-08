@@ -8,9 +8,15 @@ from utilities.models import BaseModelWithCreatedInfo, BaseModelWithUniqueName, 
 class Tag(BaseModelWithUniqueName):
     is_active = models.BooleanField(default=True)
 
+    def __str__(self):
+        return self.name
+
 
 class Interest(BaseModelWithUniqueName):
     is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.name
 
 
 class UserProfile(BaseModelWithCreatedInfo, BaseImageModel):

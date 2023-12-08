@@ -53,6 +53,7 @@ class CustomIndexDashboard(Dashboard):
                 ),
                 models=(
                     "auth.User",
+                    "user_profile.UserProfile"
                 ),
                 column=2,
                 order=2,
@@ -66,5 +67,15 @@ class CustomIndexDashboard(Dashboard):
                 models=("authtoken.TokenProxy", "auth.Group"),
                 column=0,
                 order=1,
+            )
+        )
+        self.children.append(
+            modules.ModelList(
+                _(
+                    "Blog Content",
+                ),
+                models=("blog.Blog", "user_profile.Tag", "user_profile.Interest"),
+                column=0,
+                order=2,
             )
         )
