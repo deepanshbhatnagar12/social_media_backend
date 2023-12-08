@@ -146,8 +146,8 @@ def get_notes_file_path(instance, filename):
 
 
 def get_video_file_path(instance, filename):
-    if hasattr(instance, "chapter") and instance.chapter:
-        return "chapters/{0}/videos/{1}".format(instance.chapter.id, filename)
+    if hasattr(instance, "user") and instance.user:
+        return "{0}/videos/{1}".format(instance.user.username, filename)
     return "homepage/videos/{}".format(filename)
 
 

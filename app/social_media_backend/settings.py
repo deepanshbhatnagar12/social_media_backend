@@ -66,6 +66,8 @@ INSTALLED_APPS = [
     # "ckeditor_uploader",
     "django_celery_beat",
     # Add created apps here
+    "blog",
+    "user_profile"
 ]
 
 MIDDLEWARE = [
