@@ -1,12 +1,13 @@
 from django.contrib import admin
 
 from blog.models import *
+from social_media_backend.admin import ManyToManyFieldAdmin
 
 
 # Register your models here.
 
 
-class BlogAdmin(admin.ModelAdmin):
+class BlogAdmin(ManyToManyFieldAdmin):
     list_display = ["id", "user", "likes", "_tags", "_category", "is_active", "created_at"]
     list_filter = ["user", "tags", "category", "is_active"]
     search_fields = ["title", "content", "user__first_name", "user__id"]

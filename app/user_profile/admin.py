@@ -2,8 +2,10 @@ from django.contrib import admin
 
 from user_profile.models import *
 
+from social_media_backend.admin import ManyToManyFieldAdmin
 
-class TagAdmin(admin.ModelAdmin):
+
+class TagAdmin(ManyToManyFieldAdmin):
     list_display = ["id", "name", "is_active", "created_at"]
     list_filter = ["is_active"]
     search_fields = ["id", "name"]
@@ -19,7 +21,7 @@ class InterestAdmin(TagAdmin):
     pass
 
 
-class UserProfileAdmin(admin.ModelAdmin):
+class UserProfileAdmin(ManyToManyFieldAdmin):
     list_display = ["id", "user", "following_count", "_tags", "_interests", "is_active", "created_at"]
     list_filter = ["tags", "interests", "is_active"]
     search_fields = ["id", "name", "user__first_name", "user__last_name", "user__email", "phone_number"]
