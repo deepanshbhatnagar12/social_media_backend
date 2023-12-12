@@ -1,4 +1,3 @@
-from courses import constants as courses_constants
 from rest_framework.routers import SimpleRouter
 
 from .views import *

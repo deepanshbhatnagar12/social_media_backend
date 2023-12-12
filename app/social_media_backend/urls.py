@@ -36,6 +36,8 @@ urlpatterns = [
     path("api/v1/rest-auth/", include("rest_auth.urls")),
     path("_nested_admin/", include("nested_admin.urls")),
     path("api/v1/", include("utilities.urls")),
+    path("api/v1/", include("blog.urls")),
+    path("api/v1/", include("user_profile.urls")),
     path("", admin.site.urls),
 ]
 

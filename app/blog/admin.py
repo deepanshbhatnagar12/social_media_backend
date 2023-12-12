@@ -24,10 +24,10 @@ class BlogAdmin(ManyToManyFieldAdmin):
     readonly_fields = ["id", "created_at"]
 
     def _tags(self, obj):
-        return obj.tags.all().values_list("name", flat=True)
+        return list(obj.tags.all().values_list("name", flat=True))
 
     def _category(self, obj):
-        return obj.category.all().values_list("name", flat=True)
+        return list(obj.category.all().values_list("name", flat=True))
 
 
 admin.site.register(Blog, BlogAdmin)

@@ -36,13 +36,13 @@ class UserProfileAdmin(ManyToManyFieldAdmin):
     readonly_fields = ["id", "created_at", "following_count"]
 
     def following_count(self, obj):
-        return obj.followings.all().count()
+        return UserProfile.objects.filter(followings=obj.user).count()
 
     def _tags(self, obj):
-        return obj.tags.all().values_list("name", flat=True)
+        return list(obj.tags.all().values_list("name", flat=True))
 
     def _interests(self, obj):
-        return obj.interests.all().values_list("name", flat=True)
+        return list(obj.interests.all().values_list("name", flat=True))
 
 
 admin.site.register(Tag, TagAdmin)
