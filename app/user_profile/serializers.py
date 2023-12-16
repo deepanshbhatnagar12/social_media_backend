@@ -8,7 +8,7 @@ from user_profile import constants as user_management_constants
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ["id", "first_name", "last_name", "email", "is_active"]
+        fields = ["id", "first_name", "last_name", "email", "is_active", "username"]
 
 
 class UserProfileSerializer(serializers.ModelSerializer):

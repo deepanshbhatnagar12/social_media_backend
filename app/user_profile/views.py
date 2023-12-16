@@ -1,15 +1,24 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render
 from rest_framework import viewsets, status, permissions
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.response import Response
 
 from user_profile.models import UserProfile
-from user_profile.serializers import UserProfileSerializer
+from user_profile.serializers import UserProfileSerializer, UserSerializer
 from user_profile.utils import is_email_duplicate
 from utilities.views import GeneralPagination
 
 
-# Create your views here.
+class UserViewSet(viewsets.ModelViewSet):
+    permission_classes = [permissions.AllowAny]
+    queryset = User.objects.all()
+    http_method_names = ["post"]
+    serializer_class = UserSerializer
+
+    def list(self, request, *args, **kwargs):
+        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
 
 class UserProfileViewSet(viewsets.ModelViewSet):
 
