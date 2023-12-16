@@ -7,8 +7,8 @@ router = SimpleRouter()
 
 router.register(r"user", UserViewSet, basename="user")
 router.register(r"user-profile", UserProfileViewSet, basename="user-profile")
-router.register(r"interests", InterestViewSet, basename="interests")
-router.register(r"tags", TagViewSet, basename="tags")
+router.register(r"sm-interests", InterestViewSet, basename="sm-interests")
+router.register(r"sm-tags", TagViewSet, basename="sm-tags")
 
 
 urlpatterns = router.urls
