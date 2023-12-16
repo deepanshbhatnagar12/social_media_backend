@@ -237,9 +237,9 @@ SWAGGER_SETTINGS = {
     "SECURITY_DEFINITIONS": {"api_key": {"type": "apiKey", "in": "header", "name": "Authorization"}},
 }
 
-CORS_ALLOWED_ORIGINS = [
-    "*",
-]
+# CORS_ALLOWED_ORIGINS = [
+#     "*",
+# ]
 CSRF_TRUSTED_ORIGINS = [
     '*',
 ]
