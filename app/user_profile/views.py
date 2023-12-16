@@ -4,8 +4,8 @@ from rest_framework import viewsets, status, permissions
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.response import Response
 
-from user_profile.models import UserProfile
-from user_profile.serializers import UserProfileSerializer, UserSerializer
+from user_profile.models import UserProfile, Interest
+from user_profile.serializers import UserProfileSerializer, UserSerializer, InterestSerializer, TagSerializer
 from user_profile.utils import is_email_duplicate
 from utilities.views import GeneralPagination
 
@@ -49,3 +49,21 @@ class UserProfileViewSet(viewsets.ModelViewSet):
 
     def list(self, request, *args, **kwargs):
         return super().list(request, *args, **kwargs)
+
+
+class InterestViewSet(viewsets.ModelViewSet):
+    permission_classes = [permissions.IsAuthenticated]
+    queryset = Interest.objects.filter(is_active=True)
+    serializer_class = InterestSerializer
+    http_method_names = ["get"]
+    authentication_classes = [TokenAuthentication]
+    pagination_class = GeneralPagination
+
+
+class TagViewSet(viewsets.ModelViewSet):
+    permission_classes = [permissions.IsAuthenticated]
+    queryset = Interest.objects.filter(is_active=True)
+    serializer_class = TagSerializer
+    http_method_names = ["get"]
+    authentication_classes = [TokenAuthentication]
+    pagination_class = GeneralPagination

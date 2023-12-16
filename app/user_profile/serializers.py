@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 
-from user_profile.models import UserProfile
+from user_profile.models import UserProfile, Interest, Tag
 from user_profile import constants as user_management_constants
 
 
@@ -50,3 +50,15 @@ class UserProfileSerializer(serializers.ModelSerializer):
         #     )
 
         return super(UserProfileSerializer, self).update(instance, validated_data)
+
+
+class InterestSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Interest
+        fields = ["id", "name"]
+
+
+class TagSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tag
+        fields = ["id", "name"]
