@@ -45,5 +45,10 @@ class UserProfileViewSet(viewsets.ModelViewSet):
 
         return super().update(request, *args, **kwargs)
 
-    def list(self, request, *args, **kwargs):
-        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+    def get_object(self):
+        if (pk := self.kwargs.get("pk")) == "me":
+            return self.request.user.profile
+        return super().get_object()
+
+    # def list(self, request, *args, **kwargs):
+    #     return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
