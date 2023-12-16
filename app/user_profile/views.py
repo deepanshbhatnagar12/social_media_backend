@@ -16,9 +16,6 @@ class UserViewSet(viewsets.ModelViewSet):
     http_method_names = ["post"]
     serializer_class = UserSerializer
 
-    def list(self, request, *args, **kwargs):
-        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
-
 
 class UserProfileViewSet(viewsets.ModelViewSet):
 
@@ -50,5 +47,5 @@ class UserProfileViewSet(viewsets.ModelViewSet):
             return self.request.user.profile
         return super().get_object()
 
-    # def list(self, request, *args, **kwargs):
-    #     return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+    def list(self, request, *args, **kwargs):
+        return super().list(request, *args, **kwargs)
