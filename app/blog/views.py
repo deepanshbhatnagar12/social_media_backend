@@ -11,15 +11,18 @@ from utilities.views import GeneralPagination
 class BlogViewSet(viewsets.ModelViewSet):
 
     permission_classes = [permissions.IsAuthenticated]
-    queryset = Blog.objects.all()
     serializer_class = BlogSerializer
     http_method_names = ["get", "post", "patch"]
     authentication_classes = [TokenAuthentication]
     pagination_class = GeneralPagination
 
     def list(self, request, *args, **kwargs):
+        inactive_blogs = bool(self.request.query_params.get("inactive", False))
+        if inactive_blogs is True:
+            queryset_inactive = BlogSerializer(self.queryset.filter(user=self.request.user, is_active=False), many=True).data
+            return Response(queryset_inactive, status=status.HTTP_200_OK)
         my_blogs = bool(self.request.query_params.get("my_blogs", False))
-        queryset = self.queryset
+        queryset = self.queryset.filter(is_active=True)
         if my_blogs is True:
             queryset = queryset.filter(user=self.request.user)
 
